@@ -1,0 +1,10 @@
+.search-display {
+    border: 3px solid #3b4cca;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    column-gap: 0.5em;
+}
+.search-display > div {
+    margin: 0.5em;
+}

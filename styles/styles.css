@@ -1,0 +1,60 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+.header-container {
+    display: flex;
+    background-color: #ff0000;
+    justify-content: center;
+    padding-top: 1.5em;
+}
+.welcome-div > * {
+    padding: 0.2em;
+    text-align: center;
+}
+.logopic {
+    height: 15em;
+}
+.welcome-page {
+    font-size: 1.2em;
+}
+.warning-text {
+    margin-top: 0;
+    color:#ff0000;
+    visibility: hidden;
+}
+.welcome-page, 
+.team-page,
+.end-page {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.welcome-div, 
+.team-div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5em;
+    align-items: center;
+}
+.btn-div > * {
+    margin:0.2em;
+}
+#user-input,
+#poke-search {
+    font-size: 1.5em;
+    border-radius: 4px;
+    margin-bottom: 0.3em;
+}
+.start-button, 
+.change-userbtn, 
+.nuke-btn,
+.team-check,
+.back-to-search {
+    font-size: 1.2em;
+    border-radius: 0.5em;
+    justify-self: center;
+    margin: 1em;
+}
+.visibility {
+    display: none;
+}
