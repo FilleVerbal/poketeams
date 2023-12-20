@@ -40,7 +40,11 @@ editTeamView.addEventListener("click", () => {
     team.forEach((pokemon, index) => {
         cleanTeamCard(pokemon, index);
     })
-    reserves.forEach(displayPokemonReserves);
+    reserves.forEach((pokemon) => {
+        displayPokemonReserves(pokemon)
+
+    }) 
+    
 })
 
 backToSearch.addEventListener("click", () => {

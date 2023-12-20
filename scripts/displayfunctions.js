@@ -66,8 +66,11 @@ function displayPokemonCard(pokemon) {
 }
 
 function displayPokemonReserves(pokemon) {
+    console.log("displayrtest: ", pokemon);    
+    
     const pokemonCard = document.createElement('div');
     pokemonCard.classList.add('search-display');
+
 
     const pokemonImage = document.createElement('img');
     pokemonImage.src = pokemon.sprites.front_default;
@@ -100,7 +103,7 @@ function displayPokemonReserves(pokemon) {
     kickButton.textContent = "Kick from roster";
     pokemonCard.appendChild(kickButton);
 
-    // kickButton.addEventListener('click', () => {
+    kickButton.addEventListener('click', () => {
     //     const newName = pokeNick.value.trim();
     //     if (newName.length >= 2) {
     //         pokemon.name = newName;
@@ -113,8 +116,8 @@ function displayPokemonReserves(pokemon) {
     //         console.log(reserves);
     //     }
     //     pokeNick.value = "";
-    //     console.log(`Adding ${pokemon.name} to the team or reserves`);
-    // });
+        console.log(`Adding ${pokemon.name} to the team or reserves`);
+    });
 
     yourReserves.appendChild(pokemonCard);
 }
@@ -133,6 +136,9 @@ function cleanTeamCard(pokemon, containerIndex) {
     pName.textContent = pokemon.name;
     pHP.textContent = `HP: ${pokemon.stats[0].base_stat}`;
     pokemonImg.src = pokemon.sprites.front_default;
+    pokemonImg.alt = pokemon.name;
+    console.log("check på object:", pokemon.sprites.front_default);
+
 
     const abilities = pokemon.abilities.map(ability => ability.ability.name);
 
@@ -147,8 +153,6 @@ function cleanTeamCard(pokemon, containerIndex) {
     abilitiesList.innerHTML = ""; 
     abilitiesList.appendChild(ul);
 }
-
-
 
 
 export { displayPokemonCard, cleanTeamCard, displayPokemonReserves }
