@@ -154,5 +154,16 @@ function cleanTeamCard(pokemon, containerIndex) {
     abilitiesList.appendChild(ul);
 }
 
+function starterPokemon(array, index1, index2) {
+    if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) {
+        console.error('Invalid indices');
+        return;
+    }
+    
+    const temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+} 
 
-export { displayPokemonCard, cleanTeamCard, displayPokemonReserves }
+
+export { displayPokemonCard, cleanTeamCard, displayPokemonReserves, starterPokemon }

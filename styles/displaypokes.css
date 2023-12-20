@@ -13,15 +13,28 @@
     size: 1.2em;
 }
 .card-container {
+    width: 16em;
     border-radius: 15px;
     margin: 1em;
     display: flex;
     flex-direction: column;
     border: 8px solid #b3a125;
-    height: 25em;
+    /* height: 25em; */
+}
+.pName {
+    text-align: center;
+    text-transform: capitalize;
+}
+.pHP {
+    text-align: right;
+    padding-left: 2em;
 }
 .top-row {
     display: flex;
     flex-direction: row;
     /* justify-content: space-between; */
+}
+.pokemon-img {
+    width: 7em;
+    align-self: center;
 }
