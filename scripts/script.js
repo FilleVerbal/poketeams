@@ -68,18 +68,3 @@ pokeSearch.addEventListener("input", async () => {
     }
 })
 
-document.querySelectorAll(".make-starter").forEach((button) => {
-    const index = parseInt(button.dataset.index, 10);
-    console.log("Button found:", button, "Index:", index);
-
-    button.addEventListener("click", () => {
-        // Add 1 to the index to account for the fact that the buttons are 0-based
-        // but the array starts with index 1 for the second Pokémon
-        const adjustedIndex = index + 1;
-
-        console.log("Button clicked:", adjustedIndex);
-        starterPokemon(window.team, 0, adjustedIndex);
-        console.log('Updated Team:', window.team);
-    });
-});
-

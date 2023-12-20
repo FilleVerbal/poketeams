@@ -116,42 +116,66 @@ function displayPokemonReserves(pokemon) {
     //         console.log(reserves);
     //     }
     //     pokeNick.value = "";
-        console.log(`Adding ${pokemon.name} to the team or reserves`);
+        console.log(`Kicking ${pokemon.name} from the face of the planet`);
     });
 
     yourReserves.appendChild(pokemonCard);
 }
 
+
 function cleanTeamCard(pokemon, containerIndex) {
-    console.log("kallar på ctc cindex: ", containerIndex);
-    const containerClass = containerIndex === 0 ? "starter" : containerIndex === 1 ? "second" : "third";
-    console.log("cclass: ", containerClass);
-    const container = document.querySelector(`.card-container.${containerClass}`);
+    const container = document.createElement("div");
+    container.classList.add("card-container"); 
 
-    const pName = container.querySelector(".pName");
-    const pHP = container.querySelector(".pHP");
-    const pokemonImg = container.querySelector(".pokemon-img");
-    const abilitiesList = container.querySelector(".main-abilitys");
-
+    const pName = document.createElement("h1");
+    pName.classList.add("pName");
     pName.textContent = pokemon.name;
+
+    const pHP = document.createElement("h3");
+    pHP.classList.add("pHP");
     pHP.textContent = `HP: ${pokemon.stats[0].base_stat}`;
+
+    const pokemonImg = document.createElement("img");
+    pokemonImg.classList.add("pokemon-img");
     pokemonImg.src = pokemon.sprites.front_default;
     pokemonImg.alt = pokemon.name;
-    console.log("check på object:", pokemon.sprites.front_default);
 
-
-    const abilities = pokemon.abilities.map(ability => ability.ability.name);
-
-    const ul = document.createElement("ul");
-
-    abilities.forEach(abilityName => {
+    const abilitiesList = document.createElement('ul');
+    abilitiesList.classList.add("main-abilitys");
+    pokemon.abilities.forEach(ability => {
         const li = document.createElement("li");
-        li.textContent = abilityName;
-        ul.appendChild(li);
+        li.textContent = ability.ability.name;
+        abilitiesList.appendChild(li);
     });
 
-    abilitiesList.innerHTML = ""; 
-    abilitiesList.appendChild(ul);
+    container.appendChild(pName);
+    container.appendChild(pHP);
+    container.appendChild(pokemonImg);
+    container.appendChild(abilitiesList);
+
+    if (containerIndex === 0) {
+        // Add "Kick from Team" and "Kick from Roster" buttons for the first team card
+        const kickFromTeamButton = createButton("Kick from Team");
+        const kickFromRosterButton = createButton("Kick from Roster");
+        container.appendChild(kickFromTeamButton);
+        container.appendChild(kickFromRosterButton);
+    } else {
+        // Add "Make Starter" and all three buttons for the rest of the team cards at the bottom
+        const makeStarterButton = createButton("Make Starter");
+        const kickFromTeamButton = createButton("Kick from Team");
+        const kickFromRosterButton = createButton("Kick from Roster");
+        container.appendChild(makeStarterButton);
+        container.appendChild(kickFromTeamButton);
+        container.appendChild(kickFromRosterButton);
+    }
+
+    document.querySelector(".your-team").appendChild(container);
+}
+
+function createButton(text) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    return button;
 }
 
 function starterPokemon(array, index1, index2) {
