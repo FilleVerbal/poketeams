@@ -2,8 +2,29 @@
     border: 3px solid #3b4cca;
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto 1.6em;
     column-gap: 0.5em;
+    margin: 1em;
+    border-radius: 15px;
+}
+.search-display > input {
+    height: 1.4em;
+    margin-left: 0.2em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+}
+.search-display > button {
+    height: 3em;
+    justify-self: center;
+    align-self: center;
+}
+.search-results,
+.your-reserves {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.search-display > h1 {
+    text-transform: capitalize;
 }
 .search-display > div {
     margin: 0.5em;
@@ -21,12 +42,25 @@
     border: 8px solid #b3a125;
     /* height: 25em; */
 }
+.the-pokes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.back-to-search, 
+.nuke-btn {
+    width: 10em
+}
+.your-team {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
 .pName {
     text-align: center;
     text-transform: capitalize;
 }
 .pHP {
-    text-align: right;
+    text-align:end;
     padding-left: 2em;
 }
 .top-row {
@@ -38,3 +72,4 @@
     width: 7em;
     align-self: center;
 }
+.your-team > butto

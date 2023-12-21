@@ -14,23 +14,23 @@ function displayPokemonCard(pokemon) {
     pokemonImage.alt = pokemon.name;
     pokemonCard.appendChild(pokemonImage);
 
-    const pokemonName = document.createElement('h1');
+    const pokemonName = document.createElement("h1");
     pokemonName.textContent = pokemon.name;
     pokemonCard.appendChild(pokemonName);
     console.log(pokemonName);
 
     const pokemonHP = document.createElement('h3');
-    pokemonHP.textContent = `HP: ${pokemon.stats[0].base_stat}`; 
+    pokemonHP.innerHTML = `HP <br>${pokemon.stats[0].base_stat}`; 
     pokemonCard.appendChild(pokemonHP);
     console.log("pokemondata" + pokemonName + pokemonHP)
 
     const abilitiesHeader = document.createElement('h4');
-    abilitiesHeader.textContent = 'Abilities:';
+    abilitiesHeader.textContent = "Abilities:";
     pokemonCard.appendChild(abilitiesHeader);
 
     const abilitiesList = document.createElement('ul');
     pokemon.abilities.forEach(ability => {
-        const abilityItem = document.createElement('li');
+        const abilityItem = document.createElement("li");
         abilityItem.textContent = ability.ability.name;
         abilitiesList.appendChild(abilityItem);
     });
@@ -88,12 +88,12 @@ function displayPokemonReserves(pokemon) {
     console.log("pokemondata" + pokemonName + pokemonHP)
 
     const abilitiesHeader = document.createElement('h4');
-    abilitiesHeader.textContent = 'Abilities:';
+    abilitiesHeader.textContent = "Abilities:";
     pokemonCard.appendChild(abilitiesHeader);
 
     const abilitiesList = document.createElement('ul');
     pokemon.abilities.forEach(ability => {
-        const abilityItem = document.createElement('li');
+        const abilityItem = document.createElement("li");
         abilityItem.textContent = ability.ability.name;
         abilitiesList.appendChild(abilityItem);
     });
@@ -140,7 +140,7 @@ function cleanTeamCard(pokemon, containerIndex) {
     pokemonImg.src = pokemon.sprites.front_default;
     pokemonImg.alt = pokemon.name;
 
-    const abilitiesList = document.createElement('ul');
+    const abilitiesList = document.createElement(`ul`);
     abilitiesList.classList.add("main-abilitys");
     pokemon.abilities.forEach(ability => {
         const li = document.createElement("li");
@@ -154,26 +154,50 @@ function cleanTeamCard(pokemon, containerIndex) {
     container.appendChild(abilitiesList);
 
     if (containerIndex === 0) {
-        // Add "Kick from Team" and "Kick from Roster" buttons for the first team card
         const kickFromTeamButton = createButton("Kick from Team");
         const kickFromRosterButton = createButton("Kick from Roster");
+
+        kickFromTeamButton.addEventListener(`click`, () => {
+            kickFromTeam(containerIndex)
+            displayTeam()
+            displayReserves()
+        })
+        kickFromRosterButton.addEventListener(`click`, () => {
+            kickFromRosterTeam(containerIndex)
+            displayTeam()
+            displayReserves()
+        })
+
         container.appendChild(kickFromTeamButton);
         container.appendChild(kickFromRosterButton);
     } else {
-        // Add "Make Starter" and all three buttons for the rest of the team cards at the bottom
         const makeStarterButton = createButton("Make Starter");
         const kickFromTeamButton = createButton("Kick from Team");
         const kickFromRosterButton = createButton("Kick from Roster");
+
+        makeStarterButton.addEventListener(`click`, () => {
+            starterPokemon(team, containerIndex, 0)
+            displayTeam()
+        })
+        kickFromTeamButton.addEventListener(`click`, () => {
+            kickFromTeam(containerIndex)
+            displayTeam()
+            displayReserves()
+        })
+        kickFromRosterButton.addEventListener(`click`, () => {
+            kickFromRosterTeam(containerIndex)
+            displayTeam()
+            displayReserves()
+        })
         container.appendChild(makeStarterButton);
         container.appendChild(kickFromTeamButton);
         container.appendChild(kickFromRosterButton);
     }
-
     document.querySelector(".your-team").appendChild(container);
 }
 
 function createButton(text) {
-    const button = document.createElement('button');
+    const button = document.createElement("button");
     button.textContent = text;
     return button;
 }
@@ -182,12 +206,38 @@ function starterPokemon(array, index1, index2) {
     if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) {
         console.error('Invalid indices');
         return;
-    }
-    
+    }   
     const temp = array[index1];
     array[index1] = array[index2];
     array[index2] = temp;
-} 
+}
 
+function kickFromTeam(teamIndex) {
+    const kickedPokemon = team.splice(teamIndex, 1)[0];
+    const firstReservePokemon = reserves.splice(0, 1)[0];
+    team.splice(teamIndex, 0 , firstReservePokemon);
+    reserves.unshift(kickedPokemon)
+}
+
+function kickFromRosterTeam(teamIndex) {
+    const kickedPokemon = team.splice(teamIndex, 1)[0];
+    if (reserves.length > 0) {
+        const promotePokemon = reserves.shift()
+        team.splice(teamIndex, 0, promotePokemon);
+    }
+}
+
+function displayTeam() {
+    document.querySelector(".your-team").innerHTML = "";
+    team.forEach((pokemon, index) => {
+        cleanTeamCard(pokemon, index);
+    });
+}
+function displayReserves() {
+    document.querySelector(".your-reserves").innerHTML = "";
+    reserves.forEach((pokemon) => {
+        displayPokemonReserves(pokemon);
+    })
+}
 
 export { displayPokemonCard, cleanTeamCard, displayPokemonReserves, starterPokemon }

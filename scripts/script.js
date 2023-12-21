@@ -6,22 +6,20 @@ const teamView = document.querySelector(".team-page")
 
 import { nukeEm } from "./userfunctions.js"
 import { searchForPoke } from "./fetchfunctions.js"
-import { cleanTeamCard, displayPokemonCard, displayPokemonReserves, starterPokemon } from "./displayfunctions.js"
+import { cleanTeamCard, displayPokemonCard, displayPokemonReserves } from "./displayfunctions.js"
 
-const startBtn = document.querySelector(".start-button")
-const nukeBtn = document.querySelector(".nuke-btn")
-const editTeamView = document.querySelector(".team-check")
-const endPage = document.querySelector(".end-page")
-const backToSearch = document.querySelector(".back-to-search")
+const startBtn = document.querySelector(".start-button");
+const nukeBtn = document.querySelector(".nuke-btn");
+const editTeamView = document.querySelector(".team-check");
+const endPage = document.querySelector(".end-page");
+const backToSearch = document.querySelector(".back-to-search");
 const resultsContainer = document.querySelector(".search-results");
-const yourReserves = document.querySelector(".your-reserves")
-const pokeSearch = document.querySelector("#poke-search")
-
+const yourReserves = document.querySelector(".your-reserves");
+const pokeSearch = document.querySelector("#poke-search");
 
 startBtn.addEventListener("click", () => {
     welcomeView.classList.toggle("visibility")
-    teamView.classList.toggle("visibility")
-    
+    teamView.classList.toggle("visibility")    
 })
 
 nukeBtn.addEventListener("click", () => {
@@ -37,14 +35,14 @@ editTeamView.addEventListener("click", () => {
     console.log("teamutskrift: ", team);
     console.log("reserves: ", reserves);
     console.log(team.length);
+    document.querySelector(".your-team").innerHTML = ""
+    document.querySelector(".your-reserves").innerHTML = ""
     team.forEach((pokemon, index) => {
         cleanTeamCard(pokemon, index);
     })
     reserves.forEach((pokemon) => {
         displayPokemonReserves(pokemon)
-
-    }) 
-    
+    })     
 })
 
 backToSearch.addEventListener("click", () => {
