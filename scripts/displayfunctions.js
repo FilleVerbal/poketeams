@@ -104,18 +104,8 @@ function displayPokemonReserves(pokemon) {
     pokemonCard.appendChild(kickButton);
 
     kickButton.addEventListener('click', () => {
-    //     const newName = pokeNick.value.trim();
-    //     if (newName.length >= 2) {
-    //         pokemon.name = newName;
-    //     }
-    //     if (team.length < 3) {
-    //         team.push(pokemon)
-    //         console.log(team);
-    //     } else {
-    //         reserves.push(pokemon)
-    //         console.log(reserves);
-    //     }
-    //     pokeNick.value = "";
+        kickFromRosterReserves(pokemon)
+        displayReserves()
         console.log(`Kicking ${pokemon.name} from the face of the planet`);
     });
 
@@ -225,6 +215,10 @@ function kickFromRosterTeam(teamIndex) {
         const promotePokemon = reserves.shift()
         team.splice(teamIndex, 0, promotePokemon);
     }
+}
+
+function kickFromRosterReserves(reservesIndex) {
+    const kickedPokemon = reserves.splice(reservesIndex, 1)[0]
 }
 
 function displayTeam() {
