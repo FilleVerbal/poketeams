@@ -65,11 +65,11 @@ function displayPokemonCard(pokemon) {
     resultsContainer.appendChild(pokemonCard);
 }
 
-function displayPokemonReserves(pokemon) {
+function displayPokemonReserves(pokemon, index) {
     console.log("displayrtest: ", pokemon);    
     
     const pokemonCard = document.createElement('div');
-    pokemonCard.classList.add('search-display');
+    pokemonCard.classList.add('reserve-display');
 
 
     const pokemonImage = document.createElement('img');
@@ -99,16 +99,56 @@ function displayPokemonReserves(pokemon) {
     });
     pokemonCard.appendChild(abilitiesList);
 
-    const kickButton = document.createElement("button");
-    kickButton.textContent = "Kick from roster";
-    pokemonCard.appendChild(kickButton);
+    const buttonContainer = document.createElement(`div`)
+    buttonContainer.classList.add(`button-container`)
+    if (index === 0) {
+        const kickButton = createButton("Kick from roster");
+        buttonContainer.appendChild(kickButton);
+        kickButton.addEventListener('click', () => {
+            kickFromRosterReserves(pokemon)
+            displayReserves()
+            console.log(`Kicking ${pokemon.name} from the face of the planet`);
+        });
+    } else if (index === 1) {
+        const firstReserve = createButton("Top-reserve");
+        const kickButton = createButton("Kick from roster");
+        buttonContainer.appendChild(firstReserve);
+        buttonContainer.appendChild(kickButton);
 
-    kickButton.addEventListener('click', () => {
-        kickFromRosterReserves(pokemon)
-        displayReserves()
-        console.log(`Kicking ${pokemon.name} from the face of the planet`);
-    });
+        firstReserve.addEventListener(`click`, () => {
+            topReserve(pokemon)
+            displayReserves()
+        })
+        kickButton.addEventListener('click', () => {
+            kickFromRosterReserves(pokemon)
+            displayReserves()
+            console.log(`Kicking ${pokemon.name} from the face of the planet`);
+        });
+    } else {
+        const firstReserve = createButton("Top-reserve")
+        const moveUpOne = createButton("Move up one")
+        const kickButton = document.createElement("button");
+        kickButton.textContent = "Kick from roster";
+        buttonContainer.appendChild(firstReserve);
+        buttonContainer.appendChild(moveUpOne)
+        buttonContainer.appendChild(kickButton);
+    
+        firstReserve.addEventListener(`click`, () => {
+            topReserve(pokemon)
+            displayReserves()
+        })
+        moveUpOne.addEventListener(`click`, () => {
+            moveUpOnce(pokemon)
+            displayReserves()
+        })
+        kickButton.addEventListener('click', () => {
+            kickFromRosterReserves(pokemon)
+            displayReserves()
+            console.log(`Kicking ${pokemon.name} from the face of the planet`);
+        });
 
+    }
+    pokemonCard.appendChild(buttonContainer)
     yourReserves.appendChild(pokemonCard);
 }
 
@@ -119,7 +159,11 @@ function cleanTeamCard(pokemon, containerIndex) {
 
     const pName = document.createElement("h1");
     pName.classList.add("pName");
-    pName.textContent = pokemon.name;
+    if ( containerIndex === 0 ) {
+        pName.textContent = `Starter: ${pokemon.name}`;
+    } else {
+        pName.textContent = pokemon.name;
+    }
 
     const pHP = document.createElement("h3");
     pHP.classList.add("pHP");
@@ -217,8 +261,23 @@ function kickFromRosterTeam(teamIndex) {
     }
 }
 
+function moveUpOnce(pokemon) {
+    const index = reserves.indexOf(pokemon)
+    const temp = reserves[index -1]
+    reserves[index -1] = pokemon;
+    reserves[index] = temp
+}
+
+function topReserve(pokemon) {
+    const index = reserves.indexOf(pokemon)
+    if (index !== -1) {
+        reserves.splice(index, 1)
+    }
+    reserves.unshift(pokemon)
+}
+
 function kickFromRosterReserves(reservesIndex) {
-    const kickedPokemon = reserves.splice(reservesIndex, 1)[0]
+    reserves.splice(reservesIndex, 1)[0]
 }
 
 function displayTeam() {
@@ -229,8 +288,8 @@ function displayTeam() {
 }
 function displayReserves() {
     document.querySelector(".your-reserves").innerHTML = "";
-    reserves.forEach((pokemon) => {
-        displayPokemonReserves(pokemon);
+    reserves.forEach((pokemon, index) => {
+        displayPokemonReserves(pokemon, index);
     })
 }
 

@@ -1,8 +1,20 @@
 .search-display {
     border: 3px solid #3b4cca;
+    background: linear-gradient(to bottom, #9bc6e1, #9bc6e1 30%, #ccc 20%, #9bc6e1 50%, #9bc6e1);
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto 1.6em;
+    column-gap: 0.5em;
+    margin: 1em;
+    border-radius: 15px;
+}
+.reserve-display {
+    border: 3px solid #3b4cca;
+    /* background-color: #9bc6e1; */
+    background: linear-gradient(to bottom, #9bc6e1, #9bc6e1 35%, #ccc 25%, #9bc6e1 50%, #9bc6e1);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
     column-gap: 0.5em;
     margin: 1em;
     border-radius: 15px;
@@ -40,7 +52,7 @@
     display: flex;
     flex-direction: column;
     border: 8px solid #b3a125;
-    /* height: 25em; */
+    background: linear-gradient(to bottom, #fdf0d5, #fdf0d5 40%, #606c38 50%, #fdf0d5 70%, #fdf0d5);
 }
 .the-pokes {
     display: flex;
@@ -72,4 +84,11 @@
     width: 7em;
     align-self: center;
 }
-.your-team > butto
+.button-container > button {
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em;
+    align-self: center;
+    justify-self: center;
+    border-radius: 10px;
+}

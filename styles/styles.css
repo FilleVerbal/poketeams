@@ -29,6 +29,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
+
 .welcome-div, 
 .team-div {
     display: flex;
@@ -39,10 +40,10 @@ body {
 .btn-div > * {
     margin:0.2em;
 }
-#user-input,
 #poke-search {
     font-size: 1.5em;
     border-radius: 4px;
+    margin-top: 1em;
     margin-bottom: 0.3em;
 }
 .start-button, 
@@ -57,4 +58,7 @@ body {
 }
 .visibility {
     display: none;
+}
+.mtdiv {
+    background-color: rgb(247, 255, 255);
 }

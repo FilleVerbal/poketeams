@@ -9,7 +9,6 @@ import { searchForPoke } from "./fetchfunctions.js"
 import { cleanTeamCard, displayPokemonCard, displayPokemonReserves } from "./displayfunctions.js"
 
 const startBtn = document.querySelector(".start-button");
-const nukeBtn = document.querySelector(".nuke-btn");
 const editTeamView = document.querySelector(".team-check");
 const endPage = document.querySelector(".end-page");
 const backToSearch = document.querySelector(".back-to-search");
@@ -20,12 +19,6 @@ const pokeSearch = document.querySelector("#poke-search");
 startBtn.addEventListener("click", () => {
     welcomeView.classList.toggle("visibility")
     teamView.classList.toggle("visibility")    
-})
-
-nukeBtn.addEventListener("click", () => {
-    nukeEm()
-    endPage.classList.add("visibility")
-    teamView.classList.remove("visibility")
 })
 
 editTeamView.addEventListener("click", () => {
@@ -40,8 +33,8 @@ editTeamView.addEventListener("click", () => {
     team.forEach((pokemon, index) => {
         cleanTeamCard(pokemon, index);
     })
-    reserves.forEach((pokemon) => {
-        displayPokemonReserves(pokemon)
+    reserves.forEach((pokemon, index) => {
+        displayPokemonReserves(pokemon, index)
     })     
 })
 
