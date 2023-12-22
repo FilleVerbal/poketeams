@@ -6,6 +6,7 @@
     <title>PokeTeams</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/displaypokes.css">
+    <link rel="stylesheet" href="styles/mediaqueries.css">
     <script src="scripts/script.js" type="module"></script>
 </head>
 <body>
@@ -18,8 +19,8 @@
             <p> Welcome to PokéTeams, a place where you can check on your Pokémon team and
             check out new teams. With the help of this app you can mix and match your team
             to look for weaknesses or strength in your team and look for new ways to excell in
-            Pokémon. With our help you can plan accordingly and strategize on your journey to
-            catch em all!</p>
+            Pokémon. Add at least 3 to make a team to help you strategize and plan accordingly 
+            on your journey to catch em all!</p>
             
             <button class="start-button">Get started</button>
 
@@ -31,16 +32,15 @@
     <section class="team-page visibility">
         <div class="mtdiv"></div>
         <div class="team-div">
-            <div class="btn-div">
-                <button class="nuke-btn">Start from scratch</button>
-            </div>
             <div cass="search-div">
-                <input id="poke-search" type="text" placeholder="Puttemon">
+                <input id="poke-search" type="text" placeholder="Type a Pokemon">
                 
             </div>
-            <div class="your-team">
+            <h4 class="warning-text-search"> Have at least three to make a team</h4>
+            <div>
+
                 <button class="team-check">Check team</button>    
-            </div>
+            </div> 
             <div class="search-results"></div>
 
 
@@ -53,63 +53,10 @@
     <section class="end-page visibility">
         <div class="mtdiv"></div>
         <div class="the-pokes">
-            <button class="nuke-btn">Start from scratch</button>
             <button class="back-to-search">Back to search</button>
-            <div class="your-team">
-                <div class="card-container starter">
-                    <div class="toprow">
-                        <div class="pokemon-name">
-                            <h1 class="pName"></h1>
-                        </div>
-                        <div class="pokemonHP">
-                            <h3 class="pHP"></h3>
-                        </div>
-                    </div>
-                    <img class="pokemon-img" width="100" />
-                    <div class="bottom-row">
-                        <h3> Abilities </h3>
-                        <h4 class="main-abilitys"></h4>
-                    </div>
-                    <button class="kick-from-team">To reserves</button>
-                    <button class="kick-from-roster">Kick from roster</button>
-                </div>
-                <div class="card-container second">
-                    <div class="toprow">
-                        <div class="pokemon-name">
-                            <h1 class="pName"></h1>
-                        </div>
-                        <div class="pokemonHP">
-                            <h3 class="pHP"></h3>
-                        </div>
-                    </div>
-                    <img class="pokemon-img" width="100"/>
-                    <div class="bottom-row">
-                        <h3> Abilities </h3>
-                        <h4 class="main-abilitys"></h4>
-                    </div>
-                    <button class="make-starter">Make starter</button>
-                    <button class="kick-from-team">To reserves</button>
-                    <button class="kick-from-roster">Kick from roster</button>
-                </div>
-                <div class="card-container third">
-                    <div class="toprow">
-                        <div class="pokemon-name">
-                            <h1 class="pName"></h1>
-                        </div>
-                        <div class="pokemonHP">
-                            <h3 class="pHP"></h3>
-                        </div>
-                    </div>
-                    <img class="pokemon-img" width="100"/>
-                    <div class="bottom-row">
-                        <h3> Abilities </h3>
-                        <h4 class="main-abilitys"></h4>
-                    </div>
-                    <button class="make-starter">Make starter</button>
-                    <button class="kick-from-team">To reserves</button>
-                    <button class="kick-from-roster">Kick from roster</button>
-                </div>
-            </div>
+            <h4 class="warning-text-team warning-not-needed"> Add more to make a team</h4>
+            <div class="your-team"></div>
+
             <div class="your-reserves">  </div>
 
         </div>
