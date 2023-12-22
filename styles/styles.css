@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+* {
+    font-family: "Poppins", sans-serif;
+}
 body {
     box-sizing: border-box;
     margin: 0;
@@ -18,10 +22,25 @@ body {
 .welcome-page {
     font-size: 1.2em;
 }
-.warning-text {
-    margin-top: 0;
+.warning-text-search {
+    font-size: 1.3em;
+    opacity: 0.4;
+    /* margin-top: 0; */
+    /* visibility: hidden; */
+}
+.warning-addage {
+    opacity: 0.6;
     color:#ff0000;
+}
+.warning-not-needed {
     visibility: hidden;
+}
+.warning-text-team {
+    font-size: 1.3em;
+    opacity: 0.6;
+    /* margin-top: 0; */
+    color:#cc0000;
+    /* visibility: hidden; */
 }
 .welcome-page, 
 .team-page,
