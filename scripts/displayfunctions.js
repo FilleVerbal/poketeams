@@ -182,9 +182,13 @@ function cleanTeamCard(pokemon, containerIndex) {
         const kickFromRosterButton = createButton("Kick from Roster");
 
         kickFromTeamButton.addEventListener(`click`, () => {
-            kickFromTeam(containerIndex)
-            displayTeam()
-            displayReserves()
+            if (reserves.length < 1) {
+                return
+            } else {
+                kickFromTeam(containerIndex)
+                displayTeam()
+                displayReserves()
+            }
         })
         kickFromRosterButton.addEventListener(`click`, () => {
             kickFromRosterTeam(containerIndex)
@@ -210,14 +214,23 @@ function cleanTeamCard(pokemon, containerIndex) {
             displayTeam()
         })
         kickFromTeamButton.addEventListener(`click`, () => {
-            kickFromTeam(containerIndex)
-            displayTeam()
-            displayReserves()
+            if (reserves.length < 1) {
+                return
+            } else {
+                kickFromTeam(containerIndex)
+                displayTeam()
+                displayReserves()
+            }
         })
         kickFromRosterButton.addEventListener(`click`, () => {
             kickFromRosterTeam(containerIndex)
             displayTeam()
             displayReserves()
+            if (team.length < 3) {
+                teamWarning()
+            } else {
+                teamWarningNotNeeded()
+            }
         })
         container.appendChild(makeStarterButton);
         container.appendChild(kickFromTeamButton);
