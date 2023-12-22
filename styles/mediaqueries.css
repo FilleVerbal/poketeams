@@ -1,0 +1,73 @@
+@media screen and (max-width: 450px) {
+    .logopic {
+        height: 10em;
+    }
+    .welcome-page, 
+    .team-page,
+    .end-page {
+        grid-template-columns: auto;
+    }
+    .search-results,
+    .your-reserves {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+    .your-team {
+        grid-template-columns: auto;
+    }
+}
+@media screen and (min-width: 451px) and (max-width: 560px) {
+    .logopic {
+        height: 11em;
+    }
+    .welcome-page, 
+    .team-page,
+    .end-page {
+        grid-template-columns: auto;
+    }
+    .search-results,
+    .your-reserves {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+    .your-team {
+        grid-template-columns: auto;
+    }
+}
+
+@media screen and (min-width: 561px) and (max-width: 620px) {
+    .logopic {
+        height: 13em;
+    }
+    .welcome-page, 
+    .team-page,
+    .end-page {
+        grid-template-columns: auto;
+    }
+    .search-results,
+    .your-reserves {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+    .your-team {
+        grid-template-columns: auto;
+    }
+}
+@media screen and (min-width: 621px) and (max-width: 920px) {
+    .logopic {
+        height: 13em;
+    }
+    .welcome-page, 
+    .team-page,
+    .end-page {
+        grid-template-columns: auto;
+    }
+    .search-results,
+    .your-reserves {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
+    .your-team {
+        grid-template-columns: auto auto;
+    }
+}
