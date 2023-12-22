@@ -4,47 +4,39 @@ const teamView = document.querySelector(".team-page")
 
 //  hit, bort med det ovan
 
-import { nukeEm } from "./userfunctions.js"
+import { teamWarning, teamWarningNotNeeded } from "./userfunctions.js"
 import { searchForPoke } from "./fetchfunctions.js"
-import { cleanTeamCard, displayPokemonCard, displayPokemonReserves, starterPokemon } from "./displayfunctions.js"
+import { cleanTeamCard, displayPokemonCard, displayPokemonReserves } from "./displayfunctions.js"
 
-const startBtn = document.querySelector(".start-button")
-const nukeBtn = document.querySelector(".nuke-btn")
-const editTeamView = document.querySelector(".team-check")
-const endPage = document.querySelector(".end-page")
-const backToSearch = document.querySelector(".back-to-search")
+const startBtn = document.querySelector(".start-button");
+const editTeamView = document.querySelector(".team-check");
+const endPage = document.querySelector(".end-page");
+const backToSearch = document.querySelector(".back-to-search");
 const resultsContainer = document.querySelector(".search-results");
-const yourReserves = document.querySelector(".your-reserves")
-const pokeSearch = document.querySelector("#poke-search")
-
+const pokeSearch = document.querySelector("#poke-search");
 
 startBtn.addEventListener("click", () => {
     welcomeView.classList.toggle("visibility")
-    teamView.classList.toggle("visibility")
-    
-})
-
-nukeBtn.addEventListener("click", () => {
-    nukeEm()
-    endPage.classList.add("visibility")
-    teamView.classList.remove("visibility")
+    teamView.classList.toggle("visibility")    
 })
 
 editTeamView.addEventListener("click", () => {
     welcomeView.classList.add("visibility")
     teamView.classList.add("visibility")
     endPage.classList.remove("visibility")
-    console.log("teamutskrift: ", team);
-    console.log("reserves: ", reserves);
-    console.log(team.length);
+    document.querySelector(".your-team").innerHTML = ""
+    document.querySelector(".your-reserves").innerHTML = ""
     team.forEach((pokemon, index) => {
         cleanTeamCard(pokemon, index);
     })
-    reserves.forEach((pokemon) => {
-        displayPokemonReserves(pokemon)
-
-    }) 
-    
+    reserves.forEach((pokemon, index) => {
+        displayPokemonReserves(pokemon, index)
+    })
+    if (team.length < 3) {
+        teamWarning()
+    } else {
+        teamWarningNotNeeded()
+    }
 })
 
 backToSearch.addEventListener("click", () => {
@@ -61,25 +53,8 @@ pokeSearch.addEventListener("input", async () => {
             if (result.length > 0) {
                 result.forEach(displayPokemonCard);
             }
-            console.log("fick någon form av data" + result);
         } catch (error) {
-            console.log("fick ingen data")
         }
     }
 })
-
-document.querySelectorAll(".make-starter").forEach((button) => {
-    const index = parseInt(button.dataset.index, 10);
-    console.log("Button found:", button, "Index:", index);
-
-    button.addEventListener("click", () => {
-        // Add 1 to the index to account for the fact that the buttons are 0-based
-        // but the array starts with index 1 for the second Pokémon
-        const adjustedIndex = index + 1;
-
-        console.log("Button clicked:", adjustedIndex);
-        starterPokemon(window.team, 0, adjustedIndex);
-        console.log('Updated Team:', window.team);
-    });
-});
 
